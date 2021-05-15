@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 
-class TodoAdapter (val list : List<ToDoModel>):RecyclerView.Adapter<TodoAdapter.TodoViewHolder>(){
+class TodoAdapter (val list : List<TodoModel>):RecyclerView.Adapter<TodoAdapter.TodoViewHolder>(){
 
     class TodoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         @RequiresApi(Build.VERSION_CODES.N)
-        fun bind(toDoModel: ToDoModel) {
+        fun bind(toDoModel: TodoModel) {
             with(itemView){
                 val colors=resources.getIntArray(R.array.random_color)
                 val randomColor=colors[Random().nextInt(colors.size)]

@@ -4,16 +4,12 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.icu.text.SimpleDateFormat
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.TimePicker
-import androidx.annotation.RequiresApi
-import androidx.room.Room
 import com.akshay.myapplication.databinding.ActivityTaskBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -84,7 +80,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
 
             val id = withContext(Dispatchers.IO) {
                 return@withContext db.todoDao().insert(
-                    ToDoModel(
+                    TodoModel(
                         title,
                         description,
                         category,

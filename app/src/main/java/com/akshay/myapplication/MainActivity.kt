@@ -23,7 +23,7 @@ import androidx.lifecycle.Observer
 
 class MainActivity : AppCompatActivity() {
 
-    val list= arrayListOf<ToDoModel>()
+    val list= arrayListOf<TodoModel>()
     var adapter=TodoAdapter(list)
 
     val db by lazy{
@@ -46,6 +46,18 @@ class MainActivity : AppCompatActivity() {
         binding.floating.setOnClickListener{
             startActivity(Intent(this,TaskActivity::class.java))
         }
+        initSwipe()
+
+        db.todoDao().getTask().observe(this, Observer {
+            if (!it.isNullOrEmpty()) {
+                list.clear()
+                list.addAll(it)
+                adapter.notifyDataSetChanged()
+            }else{
+                list.clear()
+                adapter.notifyDataSetChanged()
+            }
+        })
     }
 
 
@@ -69,7 +81,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 } else if (direction == ItemTouchHelper.RIGHT) {
                     GlobalScope.launch(Dispatchers.IO) {
-                        db.todoDao().finishedTask(adapter.getItemId(position))
+                        db.todoDao().finishTask(adapter.getItemId(position))
                     }
                 }
             }

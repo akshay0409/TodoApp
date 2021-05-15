@@ -7,20 +7,20 @@ import androidx.room.Query
 
 
 @Dao
-interface ToDoDao{
+interface TodoDao{
 
     @Insert
-    suspend fun insert(todoModel: ToDoModel):Long
+    suspend fun insert(todoModel: TodoModel):Long
 
 //Selecting
     @Query("Select * From TodoModel where isFinished == 0")
-    fun getTask(): LiveData<List<ToDoModel>>
+    fun getTask(): LiveData<List<TodoModel>>
 
     //Updating
     @Query("Update TodoModel Set isFinished=1 where id=:uni")
-    fun finishedTask(uni:Long)
+    fun finishTask(uni:Long)
 //Deleting
-    @Query("Delete from ToDoModel where id=:uni")
+    @Query("Delete from TodoModel where id=:uni")
     fun deleteTask(uni:Long)
 
 

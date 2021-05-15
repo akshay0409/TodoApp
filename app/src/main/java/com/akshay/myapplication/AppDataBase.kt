@@ -8,9 +8,9 @@ import androidx.room.RoomDatabase
 import kotlin.jvm.java as java
 
 
-@Database(entities = [ToDoModel::class],version=1)
+@Database(entities = [TodoModel::class],version=1)
 abstract class AppDataBase :RoomDatabase(){
-    abstract  fun todoDao():ToDoDao
+    abstract  fun todoDao():TodoDao
 
     companion object{
 
